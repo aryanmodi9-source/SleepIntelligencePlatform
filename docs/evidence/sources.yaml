@@ -1,0 +1,108 @@
+# sources registry — single source of truth (§6, §8 of CLAUDE.md).
+# `schema` is generated from scripts/check_registries.py; do not edit it by hand.
+# IDs are stable and never reused: move removed IDs to `retired_ids`.
+schema:
+  schema_version: 1
+  registry: sources
+  spec_sections: §6, §8
+  id_field: source_id
+  id_pattern: ^SRC-\d{3,}$
+  fields:
+    source_id:
+      type: str
+      required: true
+      nullable: false
+    title:
+      type: str
+      required: true
+      nullable: false
+    authors:
+      type: list
+      required: true
+      nullable: false
+    year:
+      type: int
+      required: true
+      nullable: true
+    doi:
+      type: str
+      required: true
+      nullable: true
+    url:
+      type: str
+      required: true
+      nullable: true
+    source_type:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - JOURNAL_ARTICLE
+      - REVIEW_ARTICLE
+      - CONFERENCE_PAPER
+      - PREPRINT
+      - BOOK_OR_CHAPTER
+      - DATASET_DOCUMENTATION
+      - DATASET_PUBLICATION
+      - STANDARD
+      - DATASHEET
+      - TECHNICAL_DOCUMENTATION
+      - REGULATORY_DOCUMENT
+      - WEB_PAGE
+      - PROJECT_ANALYSIS_SCRIPT
+    evidence_tier:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - SYSTEMATIC_REVIEW_OR_META_ANALYSIS
+      - METHODOLOGICAL_REVIEW
+      - PRIMARY_VALIDATION_STUDY
+      - OFFICIAL_DATASET_DOCUMENTATION
+      - STANDARD_OR_OFFICIAL_TECHNICAL_DOCUMENTATION
+      - CONFERENCE_PUBLICATION
+      - PREPRINT
+      - SECONDARY_TECHNICAL_SOURCE
+      - PROJECT_ANALYSIS
+    retrieval_status:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - RETRIEVED
+      - METADATA_ONLY
+      - NOT_RETRIEVED
+      - FAILED
+    read_level:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - FULL_TEXT
+      - ABSTRACT_ONLY
+      - SECONDARY_CITATION
+    access_date:
+      type: date
+      required: true
+      nullable: false
+    retrieval_route:
+      type: str
+      required: false
+      nullable: true
+    reference_status:
+      type: str
+      required: false
+      nullable: false
+      enum:
+      - VERIFIED_AND_REVIEWED
+      - VERIFIED_ABSTRACT_ONLY
+      - SECONDARY_ONLY
+      - UNRESOLVED
+      - KNOWN_TO_EXIST_NOT_REVIEWED
+      - NOT_YET_CHECKED
+    notes:
+      type: str
+      required: false
+      nullable: true
+retired_ids: []
+entries: []

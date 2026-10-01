@@ -1,0 +1,103 @@
+# evidence registry — single source of truth (§7, §9, §37 of CLAUDE.md).
+# `schema` is generated from scripts/check_registries.py; do not edit it by hand.
+# IDs are stable and never reused: move removed IDs to `retired_ids`.
+schema:
+  schema_version: 1
+  registry: evidence
+  spec_sections: §7, §9, §37
+  id_field: id
+  id_pattern: ^EVD-\d{3,}$
+  fields:
+    id:
+      type: str
+      required: true
+      nullable: false
+    source_id:
+      type: str
+      required: true
+      nullable: false
+      ref: sources
+    claim:
+      type: str
+      required: true
+      nullable: false
+    topic:
+      type: str
+      required: true
+      nullable: false
+    research_question:
+      type: str
+      required: true
+      nullable: false
+    read_level:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - FULL_TEXT
+      - ABSTRACT_ONLY
+      - SECONDARY_CITATION
+    location:
+      type: dict
+      required: true
+      nullable: true
+    quantitative:
+      type: bool
+      required: true
+      nullable: false
+    figure_verification:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - VERIFIED
+      - UNVERIFIED_FIGURE
+      - NOT_APPLICABLE
+    evidence_strength:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - STRONG
+      - MODERATE
+      - LIMITED
+      - CONFLICTING
+      - INSUFFICIENT
+    strength_justification:
+      type: dict
+      required: true
+      nullable: false
+    population:
+      type: str
+      required: true
+      nullable: true
+    dataset:
+      type: str
+      required: true
+      nullable: true
+    modality:
+      type: str
+      required: true
+      nullable: true
+    reference_standard:
+      type: str
+      required: true
+      nullable: true
+    finding:
+      type: str
+      required: true
+      nullable: false
+    limitations:
+      type: str
+      required: true
+      nullable: true
+    phase_e_implication:
+      type: str
+      required: true
+      nullable: true
+    reproducibility:
+      type: dict
+      required: false
+      nullable: true
+retired_ids: []
+entries: []

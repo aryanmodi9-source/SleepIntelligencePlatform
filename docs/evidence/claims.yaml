@@ -1,0 +1,85 @@
+# claims registry — single source of truth (§10, §38, §42 of CLAUDE.md).
+# `schema` is generated from scripts/check_registries.py; do not edit it by hand.
+# IDs are stable and never reused: move removed IDs to `retired_ids`.
+schema:
+  schema_version: 1
+  registry: claims
+  spec_sections: §10, §38, §42
+  id_field: id
+  id_pattern: ^CLM-\d{3,}$
+  fields:
+    id:
+      type: str
+      required: true
+      nullable: false
+    claim:
+      type: str
+      required: true
+      nullable: false
+    claim_type:
+      type: str
+      required: true
+      nullable: false
+    evidence_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: evidence
+    status:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - ESTABLISHED
+      - SUPPORTED
+      - CONTEXT_DEPENDENT
+      - PRELIMINARY
+      - CONFLICTING
+      - HYPOTHESIS
+      - UNKNOWN
+    confidence:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - HIGH
+      - MEDIUM
+      - LOW
+    limitations:
+      type: str
+      required: true
+      nullable: true
+    decision_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: decisions
+    requirement_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: requirements
+    supporting_evidence_ids:
+      type: list
+      required: false
+      nullable: true
+      ref: evidence
+    contradicting_evidence_ids:
+      type: list
+      required: false
+      nullable: true
+      ref: evidence
+    conditions_valid:
+      type: str
+      required: false
+      nullable: true
+    conditions_invalid:
+      type: str
+      required: false
+      nullable: true
+    phase_e_implication:
+      type: str
+      required: false
+      nullable: true
+retired_ids: []
+entries: []

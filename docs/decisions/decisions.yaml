@@ -1,0 +1,110 @@
+# decisions registry — single source of truth (§35 of CLAUDE.md).
+# `schema` is generated from scripts/check_registries.py; do not edit it by hand.
+# IDs are stable and never reused: move removed IDs to `retired_ids`.
+schema:
+  schema_version: 1
+  registry: decisions
+  spec_sections: §35
+  id_field: id
+  id_pattern: ^DEC-\d{3,}$
+  fields:
+    id:
+      type: str
+      required: true
+      nullable: false
+    question:
+      type: str
+      required: true
+      nullable: false
+    status:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - OPEN
+      - PROVISIONAL
+      - RESOLVED
+      - REJECTED
+      - NOT_APPLICABLE
+    priority:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - P0
+      - P1
+      - P2
+      - P3
+    evidence_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: evidence
+    candidate_options:
+      type: list
+      required: true
+      nullable: false
+    advantages:
+      type: any
+      required: true
+      nullable: true
+    limitations:
+      type: any
+      required: true
+      nullable: true
+    experiments_required:
+      type: list
+      required: true
+      nullable: true
+      ref: experiments
+    recommendation:
+      type: str
+      required: true
+      nullable: true
+    confidence:
+      type: str
+      required: true
+      nullable: true
+      enum:
+      - HIGH
+      - MEDIUM
+      - LOW
+    phase_e_implication:
+      type: str
+      required: true
+      nullable: true
+    human_review_required:
+      type: bool
+      required: true
+      nullable: false
+    provisional_rationale:
+      type: str
+      required: false
+      nullable: true
+    invalidation_conditions:
+      type: str
+      required: false
+      nullable: true
+    dataset_dependencies:
+      type: list
+      required: false
+      nullable: true
+    gap_ids:
+      type: list
+      required: false
+      nullable: true
+      ref: gaps
+    resolved_by:
+      type: str
+      required: false
+      nullable: true
+    resolved_date:
+      type: date
+      required: false
+      nullable: true
+    history:
+      type: list
+      required: false
+      nullable: true
+retired_ids: []
+entries: []

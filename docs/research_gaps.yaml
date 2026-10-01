@@ -1,0 +1,80 @@
+# gaps registry — single source of truth (§41, §48.2 of CLAUDE.md).
+# `schema` is generated from scripts/check_registries.py; do not edit it by hand.
+# IDs are stable and never reused: move removed IDs to `retired_ids`.
+schema:
+  schema_version: 1
+  registry: gaps
+  spec_sections: §41, §48.2
+  id_field: id
+  id_pattern: ^GAP-\d{3,}$
+  fields:
+    id:
+      type: str
+      required: true
+      nullable: false
+    gap:
+      type: str
+      required: true
+      nullable: false
+    category:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - LITERATURE_GAP
+      - DATASET_GAP
+      - PHYSIOLOGICAL_GAP
+      - MEASUREMENT_GAP
+      - ALGORITHM_GAP
+      - VALIDATION_GAP
+      - HARDWARE_GAP
+      - EMBEDDED_GAP
+      - CLINICAL_TRANSLATION_GAP
+      - ACCESS_GAP
+    evidence_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: evidence
+    source_ids:
+      type: list
+      required: false
+      nullable: true
+      ref: sources
+    why_it_matters:
+      type: str
+      required: true
+      nullable: false
+    current_workaround:
+      type: str
+      required: true
+      nullable: true
+    experiment_needed:
+      type: str
+      required: true
+      nullable: true
+    experiment_ids:
+      type: list
+      required: false
+      nullable: true
+      ref: experiments
+    priority:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - P0
+      - P1
+      - P2
+      - P3
+    phase_affected:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - PHASE_R
+      - PHASE_E
+      - BOTH
+      - FUTURE
+retired_ids: []
+entries: []

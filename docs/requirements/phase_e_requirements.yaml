@@ -1,0 +1,78 @@
+# requirements registry — single source of truth (§36, §39 of CLAUDE.md).
+# `schema` is generated from scripts/check_registries.py; do not edit it by hand.
+# IDs are stable and never reused: move removed IDs to `retired_ids`.
+schema:
+  schema_version: 1
+  registry: requirements
+  spec_sections: §36, §39
+  id_field: id
+  id_pattern: ^REQ-\d{3,}$
+  fields:
+    id:
+      type: str
+      required: true
+      nullable: false
+    requirement:
+      type: str
+      required: true
+      nullable: false
+    reason:
+      type: str
+      required: true
+      nullable: false
+    evidence_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: evidence
+    decision_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: decisions
+    experiment_ids:
+      type: list
+      required: true
+      nullable: true
+      ref: experiments
+    priority:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - P0
+      - P1
+      - P2
+      - P3
+    dependency:
+      type: any
+      required: true
+      nullable: true
+    phase_e_component:
+      type: str
+      required: true
+      nullable: false
+    acceptance_criterion:
+      type: str
+      required: true
+      nullable: false
+    traceability_type:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - EVIDENCE
+      - ENGINEERING_CONSTRAINT
+      - ENGINEERING_ASSUMPTION
+    status:
+      type: str
+      required: true
+      nullable: false
+      enum:
+      - DRAFT
+      - PROPOSED
+      - APPROVED
+      - DEFERRED
+      - REJECTED
+retired_ids: []
+entries: []
